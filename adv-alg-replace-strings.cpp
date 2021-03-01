@@ -7,6 +7,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <string>
+#include <cstring>
 
 using namespace std;
 
@@ -14,7 +15,9 @@ using namespace std;
 
 //function to replace strings in myString per specifications found in myPairs
 //will use a brute force algorithm
-string replaceSubs(string myString, string myReplace[]){
+string replaceSubs(string myString, string find, string replace){
+//string replaceSubs(string myString, string myreplace[]){
+  string myReplace [] = {find, replace};
   string modString = myString;
   int matchFound = 1; //counter to see if a match is found
   int i =0;
@@ -51,9 +54,9 @@ string replaceSubs(string myString, string myReplace[]){
 
 string replaceSubs1(string myString, string myReplace[]){
   string modString = myString;
-  for (int i = 0; i<(sizeof(myReplace)/sizeof(myReplace[0])); i++){
-    modString = replaceSubs(myString, myReplace[i]);
-    modString = myString;
+  //for (int i = 0; i<(sizeof(myReplace)/sizeof(myReplace[0])); i++){
+  for (int i = 0; i< 9; i=i+2){
+    modString = replaceSubs(modString, myReplace[i], myReplace[i+1]);
   }
   return modString;
 }
@@ -65,7 +68,8 @@ int main(){
   string inputPairs1[4][2]={ {"Anna", "Jovi and Victor"} , { "car", "house"}, {"today", "last week"}, {"posh", "well built"}};
   //array< array<string,2>, 4> inputPairs2[4][2]={ {"Anna", "Jovi and Victor"} , { "car", "house"}, {"today", "last week"}, {"posh", "well built"}};
   //cout<<"The size of the array is "<<sizeof(inputPairs1)/sizeof(inputPairs1[0])<<endl;
-  string testString = replaceSubs(input1, inputPairs);
-  //cout<<testString<<endl;
+  string testString = replaceSubs1(input1, inputPairs);
+  cout<<testString<<endl;
+  cout<<"InputPair1[0][0] is: "<<inputPairs[1]<<endl;
   return 0;
 }
